@@ -53,36 +53,19 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
-void saisi (int tab[][300], int *n);
-void affichage (int tab[][300],int n);
-void carre (int tab[][300],int n, int *somme,int *somm,int *k);
-void resultat (int k);
 int main()
 {
-    int n,tab[300][300],somme[300],somm[300],k;
-    saisi (tab,&n);
-    affichage (tab,n);
-    carre (tab,n,somme,somm,&k);
-    resultat (k);
-    return(0);
-}
-void saisi (int tab[][300], int *n)
-{
-    int i,j;
+    int i,j,n,tab[300][300],somme[300],somm[300],s;
     printf("Veuillez entrer la taille du tableau:");
-    scanf("%d",n);
-    for(i=0;i<*n;i++)
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
     {
-        for(j=0;j<*n;j++)  
+        for(j=0;j<n;j++)  
         {
             printf("T[%d][%d]=",i,j);
             scanf("%d",&tab[i][j]);
         }
     }
-}
-void affichage (int tab[][300],int n)
-{
-    int i,j;
     printf("Le carré est:\n");
     for(i=0;i<n;i++)
     {
@@ -92,17 +75,12 @@ void affichage (int tab[][300],int n)
         }
         printf("\n");
     }
-}
-void carre (int tab[][300],int n, int *somme,int *somm,int *k)
-{
-    int s,i,j;
     s=0;
-    *k=1;
     for(i=0;i<n;i++)
     {
         for(j=0;j<n;j++)  
         {
-            s=s+(tab[i][j]);
+            s=s+tab[i][j];
         }
         somme[i]=s;
         s=0;
@@ -111,7 +89,7 @@ void carre (int tab[][300],int n, int *somme,int *somm,int *k)
     {
         for(j=0;j<n;j++)  
         {
-            s=s+(tab[i][j]);
+            s=s+tab[i][j];
         }
         somme[i]=s;
         s=0;
@@ -120,8 +98,8 @@ void carre (int tab[][300],int n, int *somme,int *somm,int *k)
     {
         for(j=0;j<n;j++)  
         {
-            s=s+(tab[j][i]);
-        } 
+            s=s+tab[j][i];
+        }
         somm[i]=s;
         s=0;
     }
@@ -131,21 +109,11 @@ void carre (int tab[][300],int n, int *somme,int *somm,int *k)
         {
             if(somme[i]!=somm[j])
             {
-                *k=0;
+                printf("ce n'est pas un carré magique.\n");
+                exit(0);
             }
-            
         }
      }
-     
-}
-void resultat (int k)
-{
-    if (k==0)
-    {
-        printf(" Le carré n'est pas magique\n");
-    }
-    if (k==1)
-    {
-        printf("Le carré est magique\n");
-    }
+     printf("c'est un carré magique.\n");
+    return(0);
 }
